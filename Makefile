@@ -2,6 +2,7 @@ NAME = libft.a
 CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 RM = rm -f
+HEADER = libft.h
 
 SRCS = ft_isdigit.c\
 		ft_isalnum.c\
@@ -50,14 +51,16 @@ BONUS = ft_lstnew.c\
 
 OBJS = $(SRCS:.c=.o)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) 
 	@ar crs $(NAME) $(OBJS)
 
 all: $(NAME)
 
 %.o : %.c
 	@$(CC) $(CCFLAGS) -c -o $@ $<
+
 BONUS_OBJS = $(BONUS:.c=.o)
+
 clean:
 	@$(RM) $(OBJS) $(BONUS_OBJS)
 fclean: clean

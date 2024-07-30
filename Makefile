@@ -1,8 +1,8 @@
+
 NAME = libft.a
 CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 RM = rm -f
-HEADER = libft.h
 
 SRCS = ft_isdigit.c\
 		ft_isalnum.c\
@@ -38,29 +38,30 @@ SRCS = ft_isdigit.c\
 		ft_itoa.c\
 		ft_strtrim.c\
 		ft_split.c\
+		get_next_line/get_next_line.c\
+		get_next_line/get_next_line_utils.c\
+		ft_printf.c\
 
-BONUS = ft_lstnew.c\
-		ft_lstadd_front.c\
-		ft_lstsize.c\
-		ft_lstlast.c\
-		ft_lstadd_back.c\
-		ft_lstdelone.c\
-		ft_lstclear.c\
-		ft_lstiter.c\
-		ft_lstmap.c\
+BONUS = bonus/ft_lstnew_bonus.c\
+		bonus/ft_lstadd_front_bonus.c\
+		bonus/ft_lstsize_bonus.c\
+		bonus/ft_lstlast_bonus.c\
+		bonus/ft_lstadd_back_bonus.c\
+		bonus/ft_lstdelone_bonus.c\
+		bonus/ft_lstclear_bonus.c\
+		bonus/ft_lstiter_bonus.c\
+		bonus/ft_lstmap_bonus.c\
 
 OBJS = $(SRCS:.c=.o)
 
-$(NAME) : $(OBJS) 
+$(NAME) : $(OBJS)
 	@ar crs $(NAME) $(OBJS)
 
 all: $(NAME)
 
 %.o : %.c
 	@$(CC) $(CCFLAGS) -c -o $@ $<
-
-BONUS_OBJS = $(BONUS:.c=.o)
-
+BONUS_OBJS = $(BONUS:bonus.c=bonus.o)
 clean:
 	@$(RM) $(OBJS) $(BONUS_OBJS)
 fclean: clean

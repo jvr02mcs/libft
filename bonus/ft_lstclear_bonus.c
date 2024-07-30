@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrubio-m <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/10 21:27:05 by jrubio-m          #+#    #+#             */
-/*   Updated: 2023/10/10 21:27:08 by jrubio-m         ###   ########.fr       */
+/*   Created: 2023/10/12 17:58:06 by jrubio-m          #+#    #+#             */
+/*   Updated: 2023/10/12 17:58:09 by jrubio-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	while (lst)
+	t_list	*lsttmp;
+
+	if (del || lst || (*lst))
 	{
-		while (lst->next != NULL)
+		while (lst && *lst)
 		{
-			lst = lst->next;
+			lsttmp = (*lst)->next;
+			ft_lstdelone(*lst, del);
+			*lst = lsttmp;
 		}
-		return (lst);
 	}
-	return (NULL);
 }
